@@ -682,6 +682,74 @@
   }
   .btn-dark:hover { background: #1a1a1a; transform: translateY(-2px); }
 
+  /* ── CONTACT FORM ── */
+  .contact-form-wrap {
+    max-width: 700px;
+    margin: 0 auto 5rem;
+    padding: 0 1rem;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-group label {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: var(--charcoal);
+    border: 1px solid rgba(200,164,74,0.25);
+    color: var(--white);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    padding: 0.85rem 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+    appearance: none;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(245,240,232,0.3); }
+
+  .form-group select option { background: var(--charcoal); color: var(--white); }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--gold); }
+
+  .form-submit { border: none; cursor: pointer; width: 100%; padding: 1.1rem; font-size: 0.85rem; }
+
+  .form-success {
+    display: none;
+    text-align: center;
+    color: var(--gold);
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+  }
+
   /* ── FOOTER ── */
   footer {
     background: var(--black);
@@ -788,6 +856,7 @@
     .services-grid { grid-template-columns: 1fr; }
     .pillars-grid { grid-template-columns: 1fr 1fr; }
     .footer-bottom { flex-direction: column; text-align: center; }
+    .form-row { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -1037,6 +1106,47 @@
 
 <!-- FOOTER -->
 <footer id="contact">
+  <!-- CONTACT FORM -->
+  <div class="contact-form-wrap">
+    <div class="section-label reveal" style="justify-content:center;margin-bottom:0.75rem;">Get In Touch</div>
+    <h2 class="section-title reveal reveal-delay-1" style="text-align:center;margin-bottom:2.5rem;">Let's Start a <em>Conversation</em></h2>
+    <form class="contact-form reveal reveal-delay-2" onsubmit="handleFormSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="first_name" placeholder="First name" required>
+        </div>
+        <div class="form-group">
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" name="last_name" placeholder="Last name" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+      </div>
+      <div class="form-group">
+        <label for="interest">What are you interested in?</label>
+        <select id="interest" name="interest" required>
+          <option value="" disabled selected>Select a service…</option>
+          <option value="Life Insurance">Life Insurance</option>
+          <option value="Wealth Building">Wealth Building</option>
+          <option value="Family Protection">Family Protection</option>
+          <option value="Retirement Solutions">Retirement Solutions</option>
+          <option value="IUL & Indexed Solutions">IUL &amp; Indexed Solutions</option>
+          <option value="Estate Planning">Estate Planning</option>
+          <option value="General Inquiry">General Inquiry</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="4" placeholder="Tell me a bit about your situation…" required></textarea>
+      </div>
+      <button type="submit" class="btn-gold form-submit">Send Message</button>
+      <p class="form-success" id="formSuccess">Thank you! I'll be in touch shortly.</p>
+    </form>
+  </div>
+
   <div class="footer-grid">
     <div class="footer-brand">
       <img src="exchanges/financial/logo.jpeg" alt="Legacy by Odange" class="footer-logo">
@@ -1087,6 +1197,17 @@
   document.querySelectorAll('#cta .reveal').forEach(el => {
     el.style.transitionProperty = 'opacity, transform';
   });
+
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+    const subject = `Legacy by Odange — ${data.get('interest')} inquiry`;
+    const body = `Name: ${data.get('first_name')} ${data.get('last_name')}%0AEmail: ${data.get('email')}%0AInterested in: ${data.get('interest')}%0A%0A${data.get('message')}`;
+    window.location.href = `mailto:legacybyodange@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+    document.getElementById('formSuccess').style.display = 'block';
+    form.reset();
+  }
 </script>
 </body>
 </html>
