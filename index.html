@@ -634,13 +634,23 @@
   }
 
   /* ── CTA BANNER ── */
-  #cta {
+  /* ── CTA + CONTACT SPLIT ── */
+  .cta-contact-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 600px;
+  }
+
+  .cta-panel {
     background: var(--gold);
-    padding: 6rem 5vw;
+    padding: 5rem 4vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     text-align: center;
   }
 
-  #cta .cta-over {
+  .cta-panel .cta-over {
     font-size: 0.72rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -648,22 +658,41 @@
     margin-bottom: 1rem;
   }
 
-  #cta .cta-headline {
+  .cta-panel .cta-headline {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(2rem, 3.5vw, 3rem);
     font-weight: 700;
     color: var(--black);
     line-height: 1.1;
     margin-bottom: 1rem;
   }
 
-  #cta .cta-sub {
+  .cta-panel .cta-sub {
     font-size: 0.9rem;
     color: rgba(0,0,0,0.55);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 2.5rem;
   }
+
+  .form-panel {
+    background: var(--charcoal);
+    padding: 5rem 4vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .form-panel-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.15;
+    margin-bottom: 2rem;
+  }
+
+  .form-panel-title em { color: var(--gold); font-style: italic; }
 
   .btn-dark {
     background: var(--black);
@@ -683,11 +712,6 @@
   .btn-dark:hover { background: #1a1a1a; transform: translateY(-2px); }
 
   /* ── CONTACT FORM ── */
-  .contact-form-wrap {
-    max-width: 700px;
-    margin: 0 auto 5rem;
-    padding: 0 1rem;
-  }
 
   .contact-form {
     display: flex;
@@ -851,6 +875,7 @@
     .pillars-grid { grid-template-columns: repeat(2, 1fr); }
     .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .nav-links { display: none; }
+    .cta-contact-split { grid-template-columns: 1fr; }
   }
   @media (max-width: 560px) {
     .services-grid { grid-template-columns: 1fr; }
@@ -1096,20 +1121,21 @@
   </div>
 </section>
 
-<!-- CTA BANNER -->
-<section id="cta">
-  <div class="cta-over">Virtual Appointments Only</div>
-  <h2 class="cta-headline reveal">Let's Build Your Plan Together.</h2>
-  <p class="cta-sub reveal reveal-delay-1">Schedule Your Free Consultation Today</p>
-  <a href="mailto:legacybyodange@gmail.com" class="btn-dark reveal reveal-delay-2">Book My Free Consultation</a>
-</section>
+<!-- CTA + CONTACT FORM (combined) -->
+<section id="cta" class="cta-contact-split">
 
-<!-- FOOTER -->
-<footer id="contact">
-  <!-- CONTACT FORM -->
-  <div class="contact-form-wrap">
-    <div class="section-label reveal" style="justify-content:center;margin-bottom:0.75rem;">Get In Touch</div>
-    <h2 class="section-title reveal reveal-delay-1" style="text-align:center;margin-bottom:2.5rem;">Let's Start a <em>Conversation</em></h2>
+  <!-- LEFT: Virtual Appointment (gold) -->
+  <div class="cta-panel">
+    <div class="cta-over">Virtual Appointments Only</div>
+    <h2 class="cta-headline reveal">Let's Build Your Plan Together.</h2>
+    <p class="cta-sub reveal reveal-delay-1">Schedule Your Free Consultation Today</p>
+    <a href="mailto:legacybyodange@gmail.com" class="btn-dark reveal reveal-delay-2">Book My Free Consultation</a>
+  </div>
+
+  <!-- RIGHT: Get In Touch (dark) -->
+  <div class="form-panel">
+    <div class="section-label reveal" style="margin-bottom:0.75rem;">Get In Touch</div>
+    <h2 class="form-panel-title reveal reveal-delay-1">Let's Start a <em>Conversation</em></h2>
     <form class="contact-form reveal reveal-delay-2" onsubmit="handleFormSubmit(event)">
       <div class="form-row">
         <div class="form-group">
@@ -1147,6 +1173,10 @@
     </form>
   </div>
 
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
   <div class="footer-grid">
     <div class="footer-brand">
       <img src="exchanges/financial/logo.jpeg" alt="Legacy by Odange" class="footer-logo">
