@@ -463,9 +463,37 @@
     max-width: 1100px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1.4fr;
+    grid-template-columns: 1fr 1fr;
     gap: 5rem;
     align-items: center;
+  }
+
+  .why-photo-wrap {
+    position: relative;
+  }
+  .why-photo-wrap::before {
+    content: '';
+    position: absolute;
+    top: -10px; right: -10px;
+    width: 60%; height: 60%;
+    border-top: 1px solid var(--gold);
+    border-right: 1px solid var(--gold);
+    pointer-events: none;
+  }
+  .why-photo-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; left: -10px;
+    width: 60%; height: 60%;
+    border-bottom: 1px solid var(--gold);
+    border-left: 1px solid var(--gold);
+    pointer-events: none;
+  }
+  .why-photo {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 4/5;
   }
 
   .why-list {
@@ -497,6 +525,7 @@
   .why-quote-block {
     border-left: 2px solid var(--gold);
     padding-left: 2.5rem;
+    margin-top: 2.5rem;
   }
   .why-quote-block blockquote {
     font-family: 'Cormorant Garamond', serif;
@@ -909,7 +938,7 @@
 <!-- WHY ME -->
 <section id="why">
   <div class="why-grid">
-    <div>
+    <div class="why-left">
       <div class="section-label reveal">Why Work With Me</div>
       <h2 class="section-title reveal reveal-delay-1">Your Goals <em>First.</em> Always.</h2>
       <ul class="why-list">
@@ -930,12 +959,15 @@
           <span>Your Goals Are My Priority — nothing else comes first</span>
         </li>
       </ul>
+      <div class="why-quote-block reveal reveal-delay-4">
+        <blockquote>
+          "The best time to protect your future was yesterday. The second best time is <strong>NOW.</strong>"
+        </blockquote>
+        <div class="why-attr">— Odange Lexima</div>
+      </div>
     </div>
-    <div class="why-quote-block reveal reveal-delay-2">
-      <blockquote>
-        "The best time to protect your future was yesterday. The second best time is <strong>NOW.</strong>"
-      </blockquote>
-      <div class="why-attr">— Odange Lexima</div>
+    <div class="why-photo-wrap reveal reveal-delay-2">
+      <img src="exchanges/financial/odange_workwithme.webp" alt="Odange Lexima" class="why-photo">
     </div>
   </div>
 </section>
