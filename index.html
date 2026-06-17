@@ -675,6 +675,59 @@
     margin-bottom: 2.5rem;
   }
 
+  .cta-options {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin-top: 0.5rem;
+    width: 100%;
+    max-width: 420px;
+    align-self: center;
+  }
+
+  .cta-option {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1.5rem 1rem;
+    background: rgba(0,0,0,0.08);
+  }
+
+  .cta-option-duration {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.45);
+  }
+
+  .cta-option-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1.2;
+  }
+
+  .cta-option-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 0.5rem;
+  }
+
+  .cta-option .btn-dark {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.7rem;
+  }
+
+  .cta-option-divider {
+    width: 1px;
+    background: rgba(0,0,0,0.15);
+    align-self: stretch;
+  }
+
   .form-panel {
     background: var(--charcoal);
     padding: 5rem 4vw;
@@ -1149,8 +1202,22 @@
   <div class="cta-panel">
     <div class="cta-over">Virtual Appointments Only</div>
     <h2 class="cta-headline reveal">Let's Build Your Plan Together.</h2>
-    <p class="cta-sub reveal reveal-delay-1">Schedule Your Free Consultation Today</p>
-    <a href="mailto:legacybyodange@gmail.com" class="btn-dark reveal reveal-delay-2">Book My Free Consultation</a>
+    <p class="cta-sub reveal reveal-delay-1">Choose the consultation that fits you</p>
+    <div class="cta-options reveal reveal-delay-2">
+      <div class="cta-option">
+        <div class="cta-option-duration">40 min</div>
+        <div class="cta-option-label">Free Consultation</div>
+        <div class="cta-option-price">Free</div>
+        <a href="mailto:legacybyodange@gmail.com?subject=Book%2040-min%20Free%20Consultation" class="btn-dark">Book Now</a>
+      </div>
+      <div class="cta-option-divider"></div>
+      <div class="cta-option">
+        <div class="cta-option-duration">60 min</div>
+        <div class="cta-option-label">Deep Dive Session</div>
+        <div class="cta-option-price">$97</div>
+        <a href="mailto:legacybyodange@gmail.com?subject=Book%2060-min%20Session%20%2497" class="btn-dark">Book Now</a>
+      </div>
+    </div>
   </div>
 
   <!-- RIGHT: Get In Touch (dark) -->
