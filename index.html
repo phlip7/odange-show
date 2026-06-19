@@ -1227,6 +1227,9 @@
     <div class="section-label reveal" style="margin-bottom:0.75rem;">Get In Touch</div>
     <h2 class="form-panel-title reveal reveal-delay-1">Let's Start a <em>Conversation</em></h2>
     <form class="contact-form reveal reveal-delay-2" onsubmit="handleFormSubmit(event)">
+      <input type="hidden" name="access_key" value="27410856-ef69-4f64-8715-1ff70a132e52">
+      <input type="hidden" name="subject" value="New Contact — Legacy by Odange">
+      <input type="hidden" name="from_name" value="Legacy by Odange Website">
       <div class="form-row">
         <div class="form-group">
           <label for="fname">First Name</label>
@@ -1329,15 +1332,26 @@
     }
   });
 
-  function handleFormSubmit(e) {
+  async function handleFormSubmit(e) {
     e.preventDefault();
     const form = e.target;
-    const data = new FormData(form);
-    const subject = `Legacy by Odange — ${data.get('interest')} inquiry`;
-    const body = `Name: ${data.get('first_name')} ${data.get('last_name')}%0AEmail: ${data.get('email')}%0AInterested in: ${data.get('interest')}%0A%0A${data.get('message')}`;
-    window.location.href = `mailto:legacybyodange@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
-    document.getElementById('formSuccess').style.display = 'block';
-    form.reset();
+    const btn = form.querySelector('.form-submit');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: new FormData(form)
+    });
+    const result = await res.json();
+
+    if (result.success) {
+      document.getElementById('formSuccess').style.display = 'block';
+      form.reset();
+    } else {
+      btn.textContent = 'Error — try again';
+      btn.disabled = false;
+    }
   }
 </script>
 
