@@ -958,6 +958,8 @@
     box-shadow: 0 8px 24px rgba(0,0,0,0.4);
   }
 </style>
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </head>
 <body>
 
@@ -1215,7 +1217,7 @@
         <div class="cta-option-duration">60 min</div>
         <div class="cta-option-label">Deep Dive Session</div>
         <div class="cta-option-price">$97</div>
-        <a href="https://buy.stripe.com/aFa4gz1UF3Vi8J8dFyfMA00" target="_blank" rel="noopener" class="btn-dark">Book Now — $97</a>
+        <a href="" onclick="openDeepDiveBooking(); return false;" class="btn-dark">Book Now — $97</a>
       </div>
     </div>
   </div>
@@ -1314,6 +1316,17 @@
   // CTA section: override reveal for gold bg (text contrast fix)
   document.querySelectorAll('#cta .reveal').forEach(el => {
     el.style.transitionProperty = 'opacity, transform';
+  });
+
+  // Deep dive booking: Calendly popup → on confirmed → redirect to Stripe
+  function openDeepDiveBooking() {
+    Calendly.initPopupWidget({ url: 'https://calendly.com/legacybyodange/' });
+  }
+
+  window.addEventListener('message', function(e) {
+    if (e.data.event && e.data.event === 'calendly.event_scheduled') {
+      window.location.href = 'https://buy.stripe.com/aFa4gz1UF3Vi8J8dFyfMA00';
+    }
   });
 
   function handleFormSubmit(e) {
